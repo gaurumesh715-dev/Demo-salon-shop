@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALON Shop | Professional Beauty Services in Kota</title>
+    <meta name="description" content="Premium beauty salon in Rama Krishna Puram, Kota. Offering haircuts, bridal services, facials, keratin, and more. Open Tue-Mon 10am-8:30pm.">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #d4a373;       /* Gold/Tan for accents */
+            --primary-dark: #b08968;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #fdfcfc;
+            --bg-off-white: #f5f5f5;
+            --white: #ffffff;
+            --black: #1a1a1a;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; object-fit: cover; }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-padding { padding: 80px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--black);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--black);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover { color: var(--primary); }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: var(--transition);
+            background-color: var(--black);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about { background-color: var(--white); }
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; height: 400px; }
+        .about-image img { width: 100%; height: 100%; border-radius: 4px; }
+
+        /* --- SERVICES SECTION --- */
+        .services { background-color: var(--bg-off-white); }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-category {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-category:hover { transform: translateY(-5px); }
+
+        .category-title {
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .service-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .service-list li::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery { background-color: var(--white); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* --- INFO & OPENING HOURS --- */
+        .info-section {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .info-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .hours-list {
+            text-align: left;
+            display: inline-block;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            width: 250px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 0;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact { background-color: var(--bg-light); }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .contact-details { flex: 1; min-width: 300px; }
+        .map-container { flex: 1; min-width: 300px; height: 400px; }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            color: #888;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        footer p { margin-top: 10px; }
+
+        /* --- FLOATING BUTTONS --- */
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .fab {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            font-weight: bold;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .fab:hover { transform: scale(1.1); }
+        .fab-whatsapp { background-color: #25D366; }
+        .fab-phone { background-color: #007bff; }
+        
+        /* SVG Icons fill */
+        .icon-svg { width: 24px; height: 24px; fill: currentColor; }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                height: calc(100vh - 70px);
+                text-align: center;
+                transition: 0.3s;
+                padding-top: 50px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active { left: 0; }
+            .nav-item { margin: 20px 0; }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            
+            .about-content { flex-direction: column; }
+            .about-image { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">SALON <span>SHOP</span></a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content container">
+            <h1>Beauty & Elegance</h1>
+            <p>Experience world-class beauty services in the heart of Kota. From bridal makeovers to therapeutic spa treatments, we define perfection.</p>
+            <a href="#contact" class="btn btn-outline">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding about">
+        <div class="container">
+            <h2 class="section-title">About Our Salon</h2>
+            <p class="section-subtitle">Your premier destination for beauty and wellness in Rama Krishna Puram.</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Welcome to Salon Shop</h3>
+                    <br>
+                    <p>At Salon Shop, we believe that beauty is a feeling, not just a look. Located in Kota, Rajasthan, we offer a sanctuary where you can relax, rejuvenate, and refine your style.</p>
+                    <br>
+                    <p>Our team of professional stylists and therapists are dedicated to providing the highest quality service, using premium products to ensure you leave feeling your absolute best. Whether it's a simple trim or a complete bridal package, perfection is our promise.</p>
+                    <br>
+                    <a href="#services" class="btn">View Services</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=800&auto=format&fit=crop" alt="Salon Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive beauty treatments tailored just for you.</p>
+
+            <div class="services-grid">
+                
+                <!-- Category 1: Hair -->
+                <div class="service-category">
+                    <h3 class="category-title">Hair Styling & Treatments</h3>
+                    <ul class="service-list">
+                        <li>Haircut (Men & Women)</li>
+                        <li>Blow Dry & Hairstyling</li>
+                        <li>Hair Extensions</li>
+                        <li>Balayage & Highlights</li>
+                        <li>Keratin Treatment</li>
+                        <li>Smoothing & Botox</li>
+                        <li>Braids & Box Braids</li>
+                        <li>Shampoo & Conditioning</li>
+                    </ul>
+                </div>
+
+                <!-- Category 2: Skin & Face -->
+                <div class="service-category">
+                    <h3 class="category-title">Skin Care & Facials</h3>
+                    <ul class="service-list">
+                        <li>Premium Facials</li>
+                        <li>Eyebrow Threading & Shaping</li>
+                        <li>Eyebrow Beautification</li>
+                        <li>Acne Treatments</li>
+                        <li>Shaving</li>
+                        <li>Make-up Services</li>
+                        <li>Bridal Make-up</li>
+                    </ul>
+                </div>
+
+                <!-- Category 3: Body & Wellness -->
+                <div class="service-category">
+                    <h3 class="category-title">Body, Spa & Nails</h3>
+                    <ul class="service-list">
+                        <li>Massage Therapy</li>
+                        <li>Body Waxing</li>
+                        <li>Brazilian Waxing</li>
+                        <li>Spa Services</li>
+                        <li>Manicure & Pedicure</li>
+                        <li>Acrylic Nails</li>
+                        <li>Online Beauty Booking</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600&auto=format&fit=crop" alt="Hair Styling"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop" alt="Skin Care"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600&auto=format&fit=crop" alt="Manicure"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1487412947132-26c5c1b151aa?q=80&w=600&auto=format&fit=crop" alt="Makeup"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opening Hours Info -->
+    <section id="info" class="section-padding info-section">
+        <div class="container">
+            <h2 class="section-title" style="color:white; border-bottom-color: var(--primary);">Visit Us</h2>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>Opening Hours</h3>
+                    <ul class="hours-list">
+                        <li><span>Tuesday - Monday</span> <span>10:00 AM - 8:30 PM</span></li>
+                        <li style="border:none; color: var(--primary); justify-content: center; margin-top:10px;">Open 7 Days a Week</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="contact-container">
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Rama Krishna Puram, Kota, Rajasthan</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>XXXXX12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4>Booking</h4>
+                            <p>Call or WhatsApp for appointments</p>
+                        </div>
+                    </div>
+                    <br>
+                    <a href="tel:XXXXX12345" class="btn">Call Now</a>
+                </div>
+
+                <div class="map-container">
+                    <!-- Embedded Google Map for Kota, Rajasthan -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3611.833519391054!2d75.829444!3d25.143611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396f849c6645318b%3A0xc3b53805a968600d!2sRama%20Krishna%20Puram%2C%20Kota%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>SALON SHOP</h3>
+            <p>Rama Krishna Puram, Kota, Rajasthan</p>
+            <p>&copy; 2024 SALON Shop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="fab-container">
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/91XXXXX12345" target="_blank" class="fab fab-whatsapp" aria-label="Chat on WhatsApp">
+            <!-- Simple SVG for Whatsapp -->
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
+        <!-- Phone Button -->
+        <a href="tel:XXXXX12345" class="fab fab-phone" aria-label="Call Now">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </a>
+    </div>
+
+    <script>
+        // Simple script for Mobile Navigation Toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+    </script>
+</body>
+</html>
